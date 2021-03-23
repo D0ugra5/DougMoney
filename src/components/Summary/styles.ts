@@ -10,7 +10,9 @@ background:var(--shape);
 padding:1.5rem 2rem;
 border-radius:0.25rem;
 color:var(--text-title);
-
+box-shadow: 4px 1px 25px 0px rgba(0,0,0,0.41);
+-webkit-box-shadow: 4px 1px 25px 0px rgba(0,0,0,0.41);
+-moz-box-shadow: 4px 1px 25px 0px rgba(0,0,0,0.41);
 
 header{
 display:flex;

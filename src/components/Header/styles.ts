@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.header`
-background:var(--blue);
+background-image: linear-gradient(to left bottom, #6933ff, #6e34dc, #6c36bb, #67389c, #5e3a7e);
 `;
 
 
