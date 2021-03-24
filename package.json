@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-modal": "^3.12.0",
     "axios": "^0.21.1",
     "miragejs": "^0.1.41",
     "react": "^17.0.1",
