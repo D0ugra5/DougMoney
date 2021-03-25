@@ -1,11 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Container } from "./styles";
-
+interface Transaction{
+  id:number;
+  title:string;
+  amount:number;
+  type:string;
+  category:string;
+  createdAt:string
+}
 
 export function TransactionTable() {
+  const [transactions, setTransactions] = useState<Transaction[]>([])
     useEffect(() => {
-     api("transaction").then((reponse) => console.log(reponse.data));
+     api("transactions").then((reponse) => setTransactions(reponse.data.transactions));
       }, []);
   return (
     <Container>
@@ -20,36 +28,26 @@ export function TransactionTable() {
         </thead>
 
         <tbody>
-          <tr>
-            <td className="Text-title">Deselvovimento de WebSite</td>
-            <td className="Entrada">R$12.0000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
+        {transactions.map(transactions=>(
+            <tr key={transactions.id}>
+            <td className="Text-title">{transactions.title}</td>
+            <td className={transactions.type}>
+             {new Intl.NumberFormat('pt-bt',{
+               style:'currency',
+              currency:'BRL'
+
+             }).format(transactions.amount)}
+             </td>
+            <td>{transactions.category}</td>
+            <td>{new Intl.DateTimeFormat('pt-bt').format(
+              new Date(transactions.createdAt)
+            )}</td>
           </tr>
-          <tr>
-            <td>Deselvovimento de WebSite</td>
-            <td className="Saida">R$12.0000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
-          </tr>
-          <tr>
-            <td>Deselvovimento de WebSite</td>
-            <td className="Entrada">R$12.0000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
-          </tr>
-          <tr>
-            <td>Deselvovimento de WebSite</td>
-            <td className="Entrada">R$12.0000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
-          </tr>
-          <tr>
-            <td>Deselvovimento de WebSite</td>
-            <td className="Saida">R$12.0000</td>
-            <td>Desenvolvimento</td>
-            <td>20/02/2021</td>
-          </tr>
+        ))}
+      
+       
+       
+        
         </tbody>
       </table>
     </Container>
